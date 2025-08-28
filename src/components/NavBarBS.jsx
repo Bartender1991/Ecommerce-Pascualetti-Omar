@@ -10,7 +10,7 @@ function NavBarBS() {
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
           <Navbar.Brand href="#home">
-             <img alt='logo' src='../logo.png' className='logo'/>
+             <img alt='logo' src='https://i.postimg.cc/vBWf7MYF/logo.png' className='logo'/>
           </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#home">Nuevos</Nav.Link>
