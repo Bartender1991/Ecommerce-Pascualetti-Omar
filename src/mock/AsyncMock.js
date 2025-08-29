@@ -2,7 +2,7 @@ const productos = [
     {
         id: 1,
         name: "Laptop Dell Inspiron 15",
-        category: "Computadoras",
+        category: "computadoras",
         price: 15.00,
         stock: 5,
         img: "https://i.postimg.cc/qMRyKB0C/laptop-dell-inspiron-15.jpg",
@@ -11,7 +11,7 @@ const productos = [
     {
         id: 2,
         name: "Teclado Mecánico Redragon Kumara",
-        category: "Periféricos",
+        category: "perifericos",
         price: 10.00,
         stock: 7,
         img: "https://i.postimg.cc/65g2GdYD/teclado-redragon-kumara.jpg",
@@ -20,7 +20,7 @@ const productos = [
     {
         id: 3,
         name: "Mouse Logitech G502 HERO",
-        category: "Periféricos",
+        category: "perifericos",
         price: 59.70,
         stock: 2,
         img: "https://i.postimg.cc/QMpTDHgv/mouse-logitech-g502.jpg",
@@ -29,7 +29,7 @@ const productos = [
     {
         id: 4,
         name: "Monitor Samsung 24\" Curvo",
-        category: "Monitores",
+        category: "monitores",
         price: 179.68,
         stock: 25,
         img: "https://i.postimg.cc/QdK766F8/monitor-samsung-curvo-24.jpg",
@@ -38,7 +38,7 @@ const productos = [
     {
         id: 5,
         name: "Disco SSD Kingston 480GB",
-        category: "Almacenamiento",
+        category: "almacenamiento",
         price: 39.99,
         stock: 100,
         img: "https://i.postimg.cc/cC5KhYZt/ssd-kingston-480gb.jpg",
@@ -47,7 +47,7 @@ const productos = [
     {
         id: 6,
         name: "Memoria RAM Corsair Vengeance 16GB DDR4",
-        category: "Componentes",
+        category: "componentes",
         price: 69.99,
         stock: 60,
         img: "https://i.postimg.cc/V6g0SpVR/ram-corsair-16gb.jpg",
@@ -56,7 +56,7 @@ const productos = [
     {
         id: 7,
         name: "Placa de Video NVIDIA RTX 3060",
-        category: "Componentes",
+        category: "componentes",
         price: 349.79,
         stock: 20,
         img: "https://i.postimg.cc/26DnL48z/gpu-rtx-3060.jpg",
@@ -65,7 +65,7 @@ const productos = [
     {
         id: 8,
         name: "Fuente de Poder EVGA 600W 80+ Bronze",
-        category: "Componentes",
+        category: "componentes",
         price: 49.99,
         stock: 30,
         img: "https://i.postimg.cc/0Q0DYbb7/fuente-evga-600w.jpg",
@@ -74,7 +74,7 @@ const productos = [
     {
         id: 9,
         name: "Gabinete Gamer NZXT H510",
-        category: "Componentes",
+        category: "componentes",
         price: 89.99,
         stock: 15,
         img: "https://i.postimg.cc/FKcjKPvW/gabinete-nzxt-h510.jpg",
@@ -83,7 +83,7 @@ const productos = [
     {
         id: 10,
         name: "Router TP-Link Archer AX50",
-        category: "Redes",
+        category: "redes",
         price: 129.90,
         stock: 18,
         img: "https://i.postimg.cc/VvNrX4yc/router-tplink-ax50.jpg",
@@ -92,7 +92,7 @@ const productos = [
     {
         id: 11,
         name: "Auriculares HyperX Cloud II",
-        category: "Audio",
+        category: "audio",
         price: 79.99,
         stock: 35,
         img: "https://i.postimg.cc/dVg2vbbZ/auriculares-hyperx-cloud-ii.jpg",
@@ -101,7 +101,7 @@ const productos = [
     {
         id: 12,
         name: "Micrófono Blue Yeti USB",
-        category: "Audio",
+        category: "audio",
         price: 99.91,
         stock: 25,
         img: "https://i.postimg.cc/CLQDsyLr/microfono-blue-yeti.jpg",
@@ -110,7 +110,7 @@ const productos = [
     {
         id: 13,
         name: "Impresora Multifunción HP DeskJet 3775",
-        category: "Impresoras",
+        category: "impresoras",
         price: 69.99,
         stock: 22,
         img: "https://i.postimg.cc/9X1yzw3h/impresora-hp-deskjet-3775.jpg",
@@ -119,7 +119,7 @@ const productos = [
     {
         id: 14,
         name: "Tablet Samsung Galaxy Tab S6 Lite",
-        category: "Tablets",
+        category: "tablets",
         price: 249.94,
         stock: 8,
         img: "https://i.postimg.cc/TYp5wkqV/tablet-samsung-galaxy-s6-lite.jpg",
@@ -128,7 +128,7 @@ const productos = [
     {
         id: 15,
         name: "Cámara Web Logitech C920 HD Pro",
-        category: "Cámaras",
+        category: "camaras",
         price: 79.99,
         stock: 40,
         img: "https://i.postimg.cc/L8PqknWh/webcam-logitech-c920.jpg",
@@ -137,7 +137,7 @@ const productos = [
     {
         id: 16,
         name: "Hub USB 3.0 de 4 Puertos",
-        category: "Accesorios",
+        category: "accesorios",
         price: 19.99,
         stock: 80,
         img: "https://i.postimg.cc/qqmKFScR/hub-usb-3.jpg",
@@ -146,7 +146,7 @@ const productos = [
     {
         id: 17,
         name: "Disco Duro Externo Seagate 2TB",
-        category: "Almacenamiento",
+        category: "almacenamiento",
         price: 69.99,
         stock: 50,
         img: "https://i.postimg.cc/0j5mcPwF/hdd-seagate-2tb.jpg",
@@ -155,7 +155,7 @@ const productos = [
     {
         id: 18,
         name: "Proyector Epson PowerLite X49",
-        category: "Proyectores",
+        category: "proyectores",
         price: 449.99,
         stock: 12,
         img: "https://i.postimg.cc/qR4Cv4jq/proyector-epson-x49.jpg",
@@ -164,7 +164,7 @@ const productos = [
     {
         id: 19,
         name: "Smartwatch Amazfit GTS 2",
-        category: "Wearables",
+        category: "wearables",
         price: 149.99,
         stock: 30,
         img: "https://i.postimg.cc/66HGBsR6/smartwatch-amazfit-gts2.jpg",
@@ -173,7 +173,7 @@ const productos = [
     {
         id: 20,
         name: "Cargador Portátil Xiaomi Mi Power Bank 20000mAh",
-        category: "Accesorios",
+        category: "accesorios",
         price: 39.99,
         stock: 70,
         img: "https://i.postimg.cc/N0hHZ1X1/powerbank-xiaomi-20000.jpg",
@@ -187,8 +187,8 @@ const productos = [
 
 export const getProducts = () => {
     let error = false
-
     return new Promise((resolve, reject) => {
+
         setTimeout(() => {
             if (error) {
                 // existe el error, rechazamos
@@ -197,5 +197,24 @@ export const getProducts = () => {
                 resolve(productos)
             }
         }, 2000);
+    })
+}
+
+
+// Promesa n° 2
+export const getItem = (id) => {
+    let error = false
+    return new Promise((resolve, reject) => {
+
+        setTimeout(() => {
+            if (error) {
+                // existe el error, rechazamos
+                reject("hubo un error intente mas tarde")
+            } else {
+                let prod = productos.find((item) => item.id === parseInt(id))
+                resolve(prod)
+            }
+
+        }, 2000)
     })
 }
