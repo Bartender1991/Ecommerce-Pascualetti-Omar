@@ -22,7 +22,7 @@ const productos = [
         name: "Mouse Logitech G502 HERO",
         category: "perifericos",
         price: 59.70,
-        stock: 2,
+        stock: 0,
         img: "https://i.postimg.cc/QMpTDHgv/mouse-logitech-g502.jpg",
         description: "Mouse gamer de alto rendimiento con 11 botones programables."
     },

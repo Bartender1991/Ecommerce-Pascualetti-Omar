@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Row, Col, Button, ListGroup } from "react-bootstrap";
+import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ detalle }) => {
   return (
@@ -35,9 +36,7 @@ const ItemDetail = ({ detalle }) => {
             </ListGroup>
 
             <div className="text-center mt-3">
-              <Button variant="primary" size="lg">
-                Agregar al carrito 🛒
-              </Button>
+              <ItemCount stock={detalle.stock}/>
             </div>
           </Card.Body>
         </Col>
