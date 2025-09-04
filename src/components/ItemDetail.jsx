@@ -1,16 +1,24 @@
 // importamos el hook para usar el contexto
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Card, Row, Col, Button, ListGroup } from "react-bootstrap";
 import ItemCount from "./ItemCount";
 // importamos el contexto
 import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 const ItemDetail = ({ detalle }) => {
+
+  // actividad proyecto final
+  // const [quantity, setQuantity] = useState(0)
+const [purchase, setPurchase]=useState(false)
+
   // raer la funcionalidadpara agregar un tem del carrito del contexto
   const { addItem } = useContext(CartContext)
 
   // responsable de logica de agregar un item al carrito 
   const onAdd = (cantidad) => {
+    // setQuantity(cantidad)
+    setPurchase(true)
     console.log(cantidad)
     addItem(detalle, cantidad)
   }
@@ -18,8 +26,9 @@ const ItemDetail = ({ detalle }) => {
 
   return (
     <Card className="shadow-lg border-0 rounded-3 mt-4 p-3">
-      <Row>
-        <Col xs={12} className="text-center mb-3">
+      <Row className="align-items-center">
+        {/* Imagen: ocupa todo en pantallas chicas, la mitad en md+ */}
+        <Col xs={12} md={6} className="text-center mb-3 mb-md-0">
           <Card.Img
             src={detalle.img}
             alt={detalle.name}
@@ -27,10 +36,9 @@ const ItemDetail = ({ detalle }) => {
             className="rounded"
           />
         </Col>
-      </Row>
 
-      <Row>
-        <Col>
+        {/* Contenido: ocupa todo en xs, mitad en md+ */}
+        <Col xs={12} md={6}>
           <Card.Body>
             <Card.Title className="fw-bold fs-3 mb-3 text-center text-md-start">
               {detalle.name}
@@ -48,14 +56,23 @@ const ItemDetail = ({ detalle }) => {
               </ListGroup.Item>
             </ListGroup>
 
-            <div className="text-center mt-3">
-              <ItemCount stock={detalle.stock} onAdd={onAdd} />
-            </div>
+            {
+              purchase? (
+                <Link to="/cart" className="btn btn-dark">
+                  Ir al carrito
+                </Link>
+              ) : (
+                <div className="text-center text-md-start mt-3">
+                  <ItemCount stock={detalle.stock} onAdd={onAdd} />
+                </div>
+              )
+            }
 
           </Card.Body>
         </Col>
       </Row>
     </Card>
+
   );
 };
 

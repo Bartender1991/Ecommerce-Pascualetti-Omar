@@ -25,9 +25,21 @@ export const CartProvider = ({ children }) => {
 
     const addItem = (item, qty) => {
         if (isInCart(item.id)) {
+            // sumar repetidos
+            const carritoActualizado = cart.map((prod) => {
+                if (item.id === prod.id) {
+                    //actualizo y sumar cantidades
+                    return { ...prod, quantity: prod.quantity + qty }
+                }else{
+                    //retorno tal cual sin modificar
+                    return prod
+                }
+            })
+            //actualizar el estado con el nuevo array
+            setCart(carritoActualizado)
             console.log('ya esta en el carrito')
         } else {
-            setCart([...cart, { ...item, quantyti: qty }])
+            setCart([...cart, { ...item, quantity: qty }])
         }
     }
 
