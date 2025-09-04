@@ -1,14 +1,14 @@
-import Ract, {useContext} from 'react'
 import { Badge } from 'react-bootstrap';
 import { FiShoppingCart } from "react-icons/fi";
 
 import { CartContext } from '../context/CartContext';
+import { useContext } from 'react';
 
 const CartWidgetIcon = () => {
 
   const {cart} = useContext(CartContext)
 
-  console.log("contexto: ", cart)
+  console.log(cart,"contexto: ")
 
   return (
     <div>

@@ -1,16 +1,29 @@
-import React from "react";
+// importamos el hook para usar el contexto
+import React, { useContext } from "react";
 import { Card, Row, Col, Button, ListGroup } from "react-bootstrap";
 import ItemCount from "./ItemCount";
+// importamos el contexto
+import { CartContext } from "../context/CartContext";
 
 const ItemDetail = ({ detalle }) => {
+  // raer la funcionalidadpara agregar un tem del carrito del contexto
+  const { addItem } = useContext(CartContext)
+
+  // responsable de logica de agregar un item al carrito 
+  const onAdd = (cantidad) => {
+    console.log(cantidad)
+    addItem(detalle, cantidad)
+  }
+
+
   return (
     <Card className="shadow-lg border-0 rounded-3 mt-4 p-3">
       <Row>
         <Col xs={12} className="text-center mb-3">
-          <Card.Img 
-            src={detalle.img} 
-            alt={detalle.name} 
-            style={{ maxHeight: "250px", objectFit: "contain" }} 
+          <Card.Img
+            src={detalle.img}
+            alt={detalle.name}
+            style={{ maxHeight: "250px", objectFit: "contain" }}
             className="rounded"
           />
         </Col>
@@ -36,8 +49,9 @@ const ItemDetail = ({ detalle }) => {
             </ListGroup>
 
             <div className="text-center mt-3">
-              <ItemCount stock={detalle.stock}/>
+              <ItemCount stock={detalle.stock} onAdd={onAdd} />
             </div>
+
           </Card.Body>
         </Col>
       </Row>

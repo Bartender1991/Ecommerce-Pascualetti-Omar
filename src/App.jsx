@@ -12,8 +12,8 @@ function App() {
 
   return (
     <BrowserRouter>
-        <NavBarBS />
       <CartProvider>
+        <NavBarBS />
         <Routes>
           <Route path='/' element={<ItemListContainer mensaje='Bienvenidos a TecnoShop' />} />
           <Route path='/categories/:category' element={<ItemListContainer mensaje='Bienvenido a nuestra categoria' />} />

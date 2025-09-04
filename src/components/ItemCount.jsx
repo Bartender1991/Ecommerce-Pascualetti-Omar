@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-const ItemCount = ({ stock }) => {
+const ItemCount = ({ stock, onAdd }) => {
     const [count, setCount] = useState(0)
     const [comprar, setCompra] = useState(false)
 
@@ -32,7 +32,10 @@ const ItemCount = ({ stock }) => {
         console.log("se ejecuta cuando se monta y siempre que compra cambie", comprar)
     }, [comprar])
 
-    console.log("El stock es : ", stock)
+    // console.log("El stock es : ", stock)
+    const agregarAlCarrito = () => {
+        onAdd(count)
+    }
 
     return (
         <div >
@@ -42,7 +45,7 @@ const ItemCount = ({ stock }) => {
                 <button className="btn btn-success" onClick={sumar}>+</button>
             </div>
             <div >
-                <button className="btn btn-primary btn-lg mt-3" disabled={stock === 0 || count === 0} onClick={comprarHandler}>Agregar al carrito 🛒</button>
+                <button className="btn btn-primary btn-lg mt-3" disabled={stock === 0 || count === 0} onClick={agregarAlCarrito}>Agregar al carrito 🛒</button>
             </div>
         </div>
     )
