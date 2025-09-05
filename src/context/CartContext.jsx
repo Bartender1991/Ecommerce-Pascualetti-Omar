@@ -30,7 +30,7 @@ export const CartProvider = ({ children }) => {
                 if (item.id === prod.id) {
                     //actualizo y sumar cantidades
                     return { ...prod, quantity: prod.quantity + qty }
-                }else{
+                } else {
                     //retorno tal cual sin modificar
                     return prod
                 }
@@ -40,6 +40,18 @@ export const CartProvider = ({ children }) => {
             console.log('ya esta en el carrito')
         } else {
             setCart([...cart, { ...item, quantity: qty }])
+        }
+    }
+
+
+    const addItem2 = (item, qty) => {
+        //si el id no existe
+        if (!isInCart(item.id)) {
+            //si qty es mayor a 0 
+            if (qty > 0) {
+                setCart([...cart, { ...item, quantity: qty }])
+            }
+            return;
         }
     }
 

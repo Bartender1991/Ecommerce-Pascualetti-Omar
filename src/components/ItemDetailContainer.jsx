@@ -19,7 +19,7 @@ const ItemDetailContainer = () => {
             .finally(() => setLoader(false))
     }, [id])
 
-
+    console.log('estoy en ItemDetailContainer :', detalle)
 
     return (
         <>

@@ -5,12 +5,15 @@ import ItemCount from "./ItemCount";
 // importamos el contexto
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import VolverAtras from "./VolverAtras";
 
 const ItemDetail = ({ detalle }) => {
 
+  console.log('estoy en ItemCount :', detalle)
+
   // actividad proyecto final
   // const [quantity, setQuantity] = useState(0)
-const [purchase, setPurchase]=useState(false)
+  const [purchase, setPurchase] = useState(false)
 
   // raer la funcionalidadpara agregar un tem del carrito del contexto
   const { addItem } = useContext(CartContext)
@@ -29,6 +32,10 @@ const [purchase, setPurchase]=useState(false)
       <Row className="align-items-center">
         {/* Imagen: ocupa todo en pantallas chicas, la mitad en md+ */}
         <Col xs={12} md={6} className="text-center mb-3 mb-md-0">
+          <div style={{ textAlign: "left", marginBottom: "30px", marginLeft:"30px"}}>
+            <VolverAtras /> 
+            <span style={{paddingLeft:"10px"}}>Volver</span>
+          </div>
           <Card.Img
             src={detalle.img}
             alt={detalle.name}
@@ -57,7 +64,7 @@ const [purchase, setPurchase]=useState(false)
             </ListGroup>
 
             {
-              purchase? (
+              purchase ? (
                 <Link to="/cart" className="btn btn-dark">
                   Ir al carrito
                 </Link>
