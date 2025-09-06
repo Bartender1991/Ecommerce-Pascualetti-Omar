@@ -7,6 +7,9 @@ import ErrorComponent from './components/ErrorComponent';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import { CartProvider } from './context/CartContext';
 import CartContainer from './components/CartContainer';
+import 'react-toastify/dist/ReactToastify.css';
+import ToastProvider from './components/ToastProvider';
+
 
 
 function App() {
@@ -15,6 +18,7 @@ function App() {
     <BrowserRouter>
       <CartProvider>
         <NavBarBS />
+        <ToastProvider/>
         <Routes>
           <Route path='/' element={<ItemListContainer mensaje='Bienvenidos a TecnoShop' />} />
           <Route path='/categories/:category' element={<ItemListContainer mensaje='Bienvenido a nuestra categoria' />} />

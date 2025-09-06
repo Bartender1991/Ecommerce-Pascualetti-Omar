@@ -3,58 +3,31 @@ import { BsDashCircleFill } from "react-icons/bs"
 import { FaCirclePlus } from "react-icons/fa6"
 import { GiShoppingCart } from "react-icons/gi"
 
-const ItemCount = ({ stock, onAdd, isCart = false, qty, compra }) => {
-
+const CartItemCount = ({ stock, onAdd }) => {
 
     const [count, setCount] = useState(0)
 
     const sumar = () => {
         if (count < stock) {
             setCount(count + 1)
-        } else {
-            if (count === stock) {
-                console.log('maximo permitido por stokc alcanzado')
-            }
         }
     }
-
     const restar = () => {
-        if (isCart) {
-            if (count > -qty) {
-                setCount(count - 1)
-            }
-        } else {
-            if (count > 0) {
-                setCount(count - 1)
-            }
+        if (count > 0) {
+            setCount(count - 1)
         }
     }
     // validacion dinamica para ver si hay o no stock
     useEffect(() => {
-        if (isCart) {
-            console.log('valor de qty', qty)
-            setCount(qty)
-            console.log('count', count, 'qty', qty)
-            console.log('esto es stock', stock)
-
+        if (stock === 0) {
+            setCount(0);
         } else {
-            if (stock === 0) {
-                setCount(0);
-            } else {
-                setCount(1);
-            }
+            setCount(1);
         }
-        console.log('esto es stock', stock)
-
     }, [stock]);
 
     const agregarAlCarrito = () => {
-        if (isCart) {
-            onAdd(count)
-            setCount(0)
-        } else {
-            onAdd(count)
-        }
+        onAdd(count)
     }
 
     return (
@@ -76,7 +49,7 @@ const ItemCount = ({ stock, onAdd, isCart = false, qty, compra }) => {
             <div className="d-flex justify-content-center mt-3">
                 <button
                     className="btn btn-primary btn-lg shadow d-flex align-items-center"
-                    disabled={stock === 0 || count === 0 || count === stock}
+                    disabled={stock === 0 || count === 0}
                     onClick={agregarAlCarrito}
                 >
                     <GiShoppingCart className="me-2" />
@@ -87,4 +60,4 @@ const ItemCount = ({ stock, onAdd, isCart = false, qty, compra }) => {
     )
 }
 
-export default ItemCount
+export default CartItemCount

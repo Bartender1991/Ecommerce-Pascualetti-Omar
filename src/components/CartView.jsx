@@ -1,17 +1,22 @@
 import React, { useContext, useState } from 'react'
 import { CartContext } from '../context/CartContext'
 import VolverAtras from './VolverAtras'
+import CartItemCount from './CartItemCount'
+import ItemCount from './ItemCount'
 
 const CartView = () => {
     const { cart, removeItem, clear, addItem } = useContext(CartContext)
-    console.log('esto es cart ', cart)
-    
+    // console.log('esto es cart ', cart)
+
     const [purchase, setPurchase] = useState(false)
-    
-    const cartOnAdd=(cant)=>{
-        setPurchase(ture)
-        addItem(cart,cant) //esta funcion tiene que recibir dos parametros el ojbeto entero mas la nueva cantidad
-    }
+
+
+
+    const onAdd = (item, cant) => {
+        // console.log("Producto:", item, "Nueva cantidad:", cant);
+        setPurchase(true);
+        addItem(item, cant); // ahora le pasás el objeto y la cantidad
+    };
 
     return (
         <div className="container">
@@ -33,7 +38,7 @@ const CartView = () => {
                             <th>Cantidad</th>
                             <th>Subtotal</th>
                             <th>Acción</th>
-                            <th>Agregar</th>
+                            <th>Modificar Cantidad</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +55,7 @@ const CartView = () => {
                                 <td>{compra.name}</td>
                                 <td>${compra.price}</td>
                                 <td>{compra.quantity}</td>
-                                <td>${compra.quantity * compra.price}</td>
+                                <td>${(compra.quantity * compra.price).toFixed(2)}</td>
                                 <td>
                                     <button
                                         className="btn btn-sm btn-danger shadow"
@@ -59,7 +64,9 @@ const CartView = () => {
                                         ✕
                                     </button>
                                 </td>
-                                <td></td>
+                                <td>
+                                    <ItemCount compra={compra} qty={compra.quantity} stock={compra.stock} onAdd={(cant)=>onAdd(compra,cant)} isCart={true}/>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

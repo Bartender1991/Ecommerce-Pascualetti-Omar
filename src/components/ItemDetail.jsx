@@ -20,7 +20,6 @@ const ItemDetail = ({ detalle }) => {
 
   // responsable de logica de agregar un item al carrito 
   const onAdd = (cantidad) => {
-    // setQuantity(cantidad)
     setPurchase(true)
     console.log(cantidad)
     addItem(detalle, cantidad)
