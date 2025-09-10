@@ -3,7 +3,7 @@ import { getProducts } from "../mock/AsyncMock"
 import ItemList from "./ItemList"
 import { useParams } from "react-router-dom"
 import LoaderComponent from "./LoaderComponent"
-
+import {collection} from "firebase/firestore"
 
 const ItemListContainer = (props) => {
     const [data, SetData] = useState([])
@@ -11,6 +11,15 @@ const ItemListContainer = (props) => {
     const { category } = useParams()
     const { mensaje } = props
 
+    // Firebase
+
+    useEffect(() => {
+        setLoader(true)
+        // conectar con nuestra coleccion 
+        const productsCollection = collection(db)
+    }, [])
+
+    // Promesa
 
     useEffect(() => {
         console.log(loader)
