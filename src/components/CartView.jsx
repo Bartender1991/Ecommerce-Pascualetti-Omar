@@ -52,29 +52,40 @@ const CartView = () => {
                                         className="rounded shadow-sm"
                                     />
                                 </td>
-                                <td>{compra.name}</td>
-                                <td>${compra.price}</td>
-                                <td>{compra.quantity}</td>
-                                <td>${(compra.quantity * compra.price).toFixed(2)}</td>
+                                <td data-bs-toggle="tooltip" title="Nombre del producto">
+                                    {compra.name}
+                                </td>
+                                <td data-bs-toggle="tooltip" title="Precio unitario de del producto">
+                                    ${compra.price}
+
+                                </td>
+                                <td data-bs-toggle="tooltip" title="Cantidad de productos totales iguales incluidos en el carrito">
+                                    {compra.quantity}
+                                </td>
+                                <td data-bs-toggle="tooltip" title="Sumatoria de valor de unidad por cantidad de producto">
+                                    ${(compra.quantity * compra.price).toFixed(2)}
+                                </td>
                                 <td>
                                     <button
                                         className="btn btn-sm btn-danger shadow"
                                         onClick={() => removeItem(compra.id)}
+                                        data-bs-toggle="tooltip"
+                                        title="Eliminar el producto del carrito de compras"
                                     >
                                         ✕
                                     </button>
                                 </td>
                                 <td>
-                                    <ItemCount compra={compra} qty={compra.quantity} stock={compra.stock} onAdd={(cant)=>onAdd(compra,cant)} isCart={true}/>
+                                    <ItemCount compra={compra} qty={compra.quantity} stock={compra.stock} onAdd={(cant) => onAdd(compra, cant)} isCart={true} />
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-            </div>
+            </div >
 
             {/* Total */}
-            <div className="d-flex justify-content-between align-items-center mt-4 p-3 shadow-sm rounded bg-light">
+            <div className="d-flex justify-content-between align-items-center mt-4 p-3 shadow-sm rounded bg-light" >
                 <h4 className="mb-0">
                     Total a pagar:{" "}
                     <span className="fw-bold text-success">
@@ -88,8 +99,8 @@ const CartView = () => {
                     </button>
                     <button className="btn btn-success">Terminar compra</button>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
 
     )
 }

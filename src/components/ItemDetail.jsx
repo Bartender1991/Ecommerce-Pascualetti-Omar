@@ -31,9 +31,9 @@ const ItemDetail = ({ detalle }) => {
       <Row className="align-items-center">
         {/* Imagen: ocupa todo en pantallas chicas, la mitad en md+ */}
         <Col xs={12} md={6} className="text-center mb-3 mb-md-0">
-          <div style={{ textAlign: "left", marginBottom: "30px", marginLeft:"30px"}}>
-            <VolverAtras /> 
-            <span style={{paddingLeft:"10px"}}>Volver</span>
+          <div style={{ textAlign: "left", marginBottom: "30px", marginLeft: "30px" }}>
+            <VolverAtras />
+            <span style={{ paddingLeft: "10px" }}>Volver</span>
           </div>
           <Card.Img
             src={detalle.img}
@@ -64,9 +64,16 @@ const ItemDetail = ({ detalle }) => {
 
             {
               purchase ? (
-                <Link to="/cart" className="btn btn-dark">
-                  Ir al carrito
-                </Link>
+                <div className="d-flex justify-content-center mt-3">
+                  <Link
+                    to="/cart"
+                    className="btn btn-success btn-lg shadow d-flex align-items-center"
+                  >
+                    <i className="bi bi-cart-check-fill me-2"></i>
+                    Ir al carrito
+                  </Link>
+                </div>
+
               ) : (
                 <div className="text-center text-md-start mt-3">
                   <ItemCount stock={detalle.stock} onAdd={onAdd} />

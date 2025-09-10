@@ -25,19 +25,12 @@ export const CartProvider = ({ children }) => {
     // isInCart: (id) => true|false
 
     const addItem = (item, qty) => {
-
-
-
+        console.log(cart)
         if (isInCart(item.id)) {
             // Buscar si el producto ya está en el carrito
             const productoEnCarrito = cart.find(prod => prod.id === item.id);
-            console.log('productoEnCarrito', productoEnCarrito)
-
             const cantidadActual = productoEnCarrito ? productoEnCarrito.quantity : 0;
-            console.log('cantidadActual', cantidadActual)
-
             const cantidadTotal = cantidadActual + qty;
-            console.log('cantidadTotal', cantidadTotal)
 
             // Validar que no se exceda el stock
             if (cantidadTotal > item.stock) {
@@ -70,7 +63,6 @@ export const CartProvider = ({ children }) => {
             if (qty > 0) {
                 setCart([...cart, { ...item, quantity: qty }]);
                 toast.success("¡Agregado al carrito!");
-
             }
         }
     }
@@ -87,9 +79,15 @@ export const CartProvider = ({ children }) => {
         return cart.some((prod) => prod.id === id)
     }
 
+    const getQty = (item) => {
+        if ('quantity' in item) {
+            const producto = cart.find(prod => prod.id === item.id)
+            return producto ? producto.quantity : 0
+        }
+    }
 
     return (
-        <CartContext.Provider value={{ cart, addItem, clear, removeItem }}>
+        <CartContext.Provider value={{ cart, addItem, clear, removeItem, getQty }}>
             {children}
         </CartContext.Provider>
     )

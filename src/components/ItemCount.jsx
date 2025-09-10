@@ -2,19 +2,20 @@ import { useEffect, useState } from "react"
 import { BsDashCircleFill } from "react-icons/bs"
 import { FaCirclePlus } from "react-icons/fa6"
 import { GiShoppingCart } from "react-icons/gi"
+import { toast } from "react-toastify";
 
-const ItemCount = ({ stock, onAdd, isCart = false, qty, compra }) => {
+const ItemCount = ({ getQty, stock, onAdd, isCart = false, qty, compra }) => {
 
 
     const [count, setCount] = useState(0)
 
     const sumar = () => {
-        if (count < stock) {
+        if (compra.quantity + count < compra.stock) {
             setCount(count + 1)
+            console.log(getQty)
+            console.log(compra.quantity)
         } else {
-            if (count === stock) {
-                console.log('maximo permitido por stokc alcanzado')
-            }
+            toast.warning("No hay más unidades disponibles para agregar");
         }
     }
 
@@ -32,10 +33,10 @@ const ItemCount = ({ stock, onAdd, isCart = false, qty, compra }) => {
     // validacion dinamica para ver si hay o no stock
     useEffect(() => {
         if (isCart) {
-            console.log('valor de qty', qty)
-            setCount(qty)
-            console.log('count', count, 'qty', qty)
-            console.log('esto es stock', stock)
+            // console.log('valor de qty', qty)
+            setCount(0)
+            // console.log('count', count, 'qty', qty)
+            // console.log('esto es stock', stock)
 
         } else {
             if (stock === 0) {
@@ -44,7 +45,7 @@ const ItemCount = ({ stock, onAdd, isCart = false, qty, compra }) => {
                 setCount(1);
             }
         }
-        console.log('esto es stock', stock)
+        // console.log('esto es stock', stock)
 
     }, [stock]);
 
