@@ -3,7 +3,8 @@ import { getProducts } from "../mock/AsyncMock"
 import ItemList from "./ItemList"
 import { useParams } from "react-router-dom"
 import LoaderComponent from "./LoaderComponent"
-import {collection} from "firebase/firestore"
+import { collection, getDocs, query, where } from "firebase/firestore"
+import { db } from "../service/firebase"
 
 const ItemListContainer = (props) => {
     const [data, SetData] = useState([])
@@ -11,32 +12,48 @@ const ItemListContainer = (props) => {
     const { category } = useParams()
     const { mensaje } = props
 
-    // Firebase
 
+    // Firebase
     useEffect(() => {
         setLoader(true)
         // conectar con nuestra coleccion 
-        const productsCollection = collection(db)
-    }, [])
-
-    // Promesa
-
-    useEffect(() => {
-        console.log(loader)
-        setLoader(true)
-        getProducts()
+        const productsCollection = category 
+        ? query(collection(db, 'productos'), where("category", "==", category))
+        : collection(db, 'productos')
+        //Pedir los datos AKA documentos
+        getDocs(productsCollection)
             .then((res) => {
-                if (category) {
-                    SetData(res.filter((item) => item.category === category))
-                } else {
-                    SetData(res)
-                }
+                // console.log(res.docs)
+                const lista = res.docs.map((doc)=>{
+                    return{
+                        id:doc.id,
+                        ...doc.data()
+                    }
+                })
+                // console.log(lista)
+                SetData(lista)
             })
-            .catch((error) => console.error(error))
+            .catch((error) => console.log(error))
             .finally(() => setLoader(false))
     }, [category])
 
-    console.log(category)
+    // Promesa
+    // useEffect(() => {
+    //     console.log(loader)
+    //     setLoader(true)
+    //     getProducts()
+    //         .then((res) => {
+    //             if (category) {
+    //                 SetData(res.filter((item) => item.category === category))
+    //             } else {
+    //                 SetData(res)
+    //             }
+    //         })
+    //         .catch((error) => console.error(error))
+    //         .finally(() => setLoader(false))
+    // }, [category])
+
+    // console.log(category)
 
     const title = category ? category : mensaje
     return (
