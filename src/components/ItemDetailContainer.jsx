@@ -12,7 +12,7 @@ const ItemDetailContainer = () => {
     const { id } = useParams()
     const [loader, setLoader] = useState(false)
     const [invalid, setInvalid] = useState(null)
-    // firebase
+
     useEffect(() => {
         setLoader(true)
         // conectar con nuestra coleccion y crear una referencia
@@ -22,6 +22,7 @@ const ItemDetailContainer = () => {
             .then((res) => {
                 if (res.data()) {
                     setDetalle({ id: res.id, ...res.data() })
+                    console.log('Item-Detail-Container',detalle)
                 } else {
                     setInvalid(true)
                 }
@@ -30,18 +31,9 @@ const ItemDetailContainer = () => {
             .finally(() => setLoader(false))
     }, [id])
 
-
-    // promesa
-    // crear una promesa que retorne uno solo
-    // useEffect(() => {
-    //     setLoader(true)
-    //     getItem(id)
-    //         .then((res) => setDetalle(res))
-    //         .catch((error) => console.log(error))
-    //         .finally(() => setLoader(false))
-    // }, [id])
-
     console.log('estoy en ItemDetailContainer :', detalle)
+
+    //return anticipado
     if (invalid) {
         return (
             <div>
@@ -50,6 +42,7 @@ const ItemDetailContainer = () => {
             </div>
         )
     }
+
     return (
         <>
             {

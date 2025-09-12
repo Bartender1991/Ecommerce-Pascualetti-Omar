@@ -6,14 +6,14 @@ import { useContext } from 'react';
 
 const CartWidgetIcon = () => {
 
-  const {cart} = useContext(CartContext)
+  const {cart, cartQuantity} = useContext(CartContext)
 
   console.log(cart,"contexto: ")
 
   return (
     <div>
       <FiShoppingCart color='white' fontSize={'1.8rem'}/>
-      <Badge bg="danger">38</Badge>
+      {cart.length > 0 && <Badge bg="danger">{cartQuantity()}</Badge>}
     </div>
   )
 }

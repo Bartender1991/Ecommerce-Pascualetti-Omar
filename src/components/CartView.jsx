@@ -3,13 +3,15 @@ import { CartContext } from '../context/CartContext'
 import VolverAtras from './VolverAtras'
 import CartItemCount from './CartItemCount'
 import ItemCount from './ItemCount'
+import { Link } from 'react-router-dom'
 
 const CartView = () => {
-    const { cart, removeItem, clear, addItem } = useContext(CartContext)
+    const { cart, removeItem, clear, addItem, total } = useContext(CartContext)
     // console.log('esto es cart ', cart)
 
     const [purchase, setPurchase] = useState(false)
 
+    
 
 
     const onAdd = (item, cant) => {
@@ -89,15 +91,15 @@ const CartView = () => {
                 <h4 className="mb-0">
                     Total a pagar:{" "}
                     <span className="fw-bold text-success">
-                        $
-                        {cart.reduce((acc, compra) => acc + compra.price * compra.quantity, 0).toFixed(2)}
+                        ${total()}
+                        {console.log(total())}
                     </span>
                 </h4>
                 <div>
                     <button className="btn btn-outline-danger me-2" onClick={clear}>
                         Vaciar carrito
                     </button>
-                    <button className="btn btn-success">Terminar compra</button>
+                    <Link to='/checkout' className="btn btn-success">Terminar compra</Link>
                 </div>
             </div >
         </div >

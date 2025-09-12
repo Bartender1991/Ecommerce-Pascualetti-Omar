@@ -8,12 +8,19 @@ const ItemCount = ({ getQty, stock, onAdd, isCart = false, qty, compra }) => {
 
 
     const [count, setCount] = useState(0)
+    console.log(
+        'getQty',getQty,
+        'stock',stock,
+        'onAdd',onAdd,
+        'qty',qty,
+        'compra',compra
+    )
 
     const sumar = () => {
-        if (compra.quantity + count < compra.stock) {
-            setCount(count + 1)
+        setCount(count + 1)
+        if (qty + count < stock) {
             console.log(getQty)
-            console.log(compra.quantity)
+            console.log(qty)
         } else {
             toast.warning("No hay más unidades disponibles para agregar");
         }

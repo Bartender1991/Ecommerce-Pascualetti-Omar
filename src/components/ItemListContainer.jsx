@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom"
 import LoaderComponent from "./LoaderComponent"
 import { collection, getDocs, query, where } from "firebase/firestore"
 import { db } from "../service/firebase"
+import SubirMasivo from "./subirMasivo"
 
 const ItemListContainer = (props) => {
     const [data, SetData] = useState([])
@@ -17,16 +18,16 @@ const ItemListContainer = (props) => {
     useEffect(() => {
         setLoader(true)
         // conectar con nuestra coleccion 
-        const productsCollection = category 
-        ? query(collection(db, 'productos'), where("category", "==", category))
-        : collection(db, 'productos')
+        const productsCollection = category
+            ? query(collection(db, 'productos'), where("category", "==", category))
+            : collection(db, 'productos')
         //Pedir los datos AKA documentos
         getDocs(productsCollection)
             .then((res) => {
                 // console.log(res.docs)
-                const lista = res.docs.map((doc)=>{
-                    return{
-                        id:doc.id,
+                const lista = res.docs.map((doc) => {
+                    return {
+                        id: doc.id,
                         ...doc.data()
                     }
                 })
