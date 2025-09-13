@@ -4,39 +4,53 @@ import { FaCirclePlus } from "react-icons/fa6"
 import { GiShoppingCart } from "react-icons/gi"
 import { toast } from "react-toastify";
 
-const ItemCount = ({ getQty, stock, onAdd, isCart = false, qty, compra }) => {
+const ItemCount = ({ getQty, stock, onAdd, isCart = false, qty, compra, isDetail }) => {
 
 
     const [count, setCount] = useState(0)
+
     console.log(
-        'getQty',getQty,
-        'stock',stock,
-        'onAdd',onAdd,
-        'qty',qty,
-        'compra',compra
+        'detalle', isDetail,
+        'getQty', getQty,
+        'stock', stock,
+        'onAdd', onAdd,
+        'qty', qty,
+        'compra', compra
     )
 
+
     const sumar = () => {
-        setCount(count + 1)
-        if (qty + count < stock) {
-            console.log(getQty)
-            console.log(qty)
+        if (!isCart) {
+            if (count < stock) {
+                setCount(count + 1)
+            }else{
+                toast.warning("Has superado el máximo permitiro en stock")
+            }
         } else {
-            toast.warning("No hay más unidades disponibles para agregar");
+            if (qty + count < stock) {
+                setCount(count + 1)
+            } else {
+                toast.warning("No hay más unidades disponibles para agregar")
+            }
         }
     }
 
     const restar = () => {
-        if (isCart) {
-            if (count > -qty) {
+        if (!isCart) {
+            if (count > 0) {
                 setCount(count - 1)
             }
         } else {
-            if (count > 0) {
+            if (count > -qty) {
                 setCount(count - 1)
             }
         }
     }
+
+
+
+
+
     // validacion dinamica para ver si hay o no stock
     useEffect(() => {
         if (isCart) {
@@ -84,7 +98,7 @@ const ItemCount = ({ getQty, stock, onAdd, isCart = false, qty, compra }) => {
             <div className="d-flex justify-content-center mt-3">
                 <button
                     className="btn btn-primary btn-lg shadow d-flex align-items-center"
-                    disabled={stock === 0 || count === 0 || count === stock}
+                    disabled={stock === 0 || count === 0}
                     onClick={agregarAlCarrito}
                 >
                     <GiShoppingCart className="me-2" />

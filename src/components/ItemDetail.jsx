@@ -1,5 +1,5 @@
 // importamos el hook para usar el contexto
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, Row, Col, Button, ListGroup } from "react-bootstrap";
 import ItemCount from "./ItemCount";
 // importamos el contexto
@@ -14,6 +14,7 @@ const ItemDetail = ({ detalle }) => {
   // actividad proyecto final
   // const [quantity, setQuantity] = useState(0)
   const [purchase, setPurchase] = useState(false)
+  const [isDetail, setIsDetail] = useState(true)
 
   // raer la funcionalidadpara agregar un tem del carrito del contexto
   const { addItem } = useContext(CartContext)
@@ -76,7 +77,7 @@ const ItemDetail = ({ detalle }) => {
 
               ) : (
                 <div className="text-center text-md-start mt-3">
-                  <ItemCount stock={detalle.stock} onAdd={onAdd} />
+                  <ItemCount isDetail={isDetail} stock={detalle.stock} onAdd={onAdd} />
                 </div>
               )
             }
