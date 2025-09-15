@@ -38,24 +38,6 @@ const ItemListContainer = (props) => {
             .finally(() => setLoader(false))
     }, [category])
 
-    // Promesa
-    // useEffect(() => {
-    //     console.log(loader)
-    //     setLoader(true)
-    //     getProducts()
-    //         .then((res) => {
-    //             if (category) {
-    //                 SetData(res.filter((item) => item.category === category))
-    //             } else {
-    //                 SetData(res)
-    //             }
-    //         })
-    //         .catch((error) => console.error(error))
-    //         .finally(() => setLoader(false))
-    // }, [category])
-
-    // console.log(category)
-
     const title = category ? category : mensaje
     return (
         <>

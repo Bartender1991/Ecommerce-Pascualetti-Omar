@@ -92,7 +92,6 @@ export const CartProvider = ({ children }) => {
 
     const total = () => {
         return cart.reduce((acc, prod) => acc + prod.price * prod.quantity, 0).toFixed(2)
-        console.log(cart)
     }
 
     return (

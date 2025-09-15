@@ -19,10 +19,6 @@ const Checkout = () => {
             }
         )
     }
-
-
-    console.log(bayer, validMail)
-
     const finalizarCompra = (e) => {
         e.preventDefault()
         console.log('preventeDefault', e)
@@ -32,6 +28,7 @@ const Checkout = () => {
         } else if (bayer.email !== validMail) {
             alert('los correos no coinciden papu')
         } else {
+            // creamos obejto
             let order = {
                 comprador: bayer,
                 compras: cart,
@@ -39,7 +36,7 @@ const Checkout = () => {
                 date: serverTimestamp()
             }
             const ventas = collection(db, 'orders')
-            // agregar el doc
+            // agregar el objeto al doc
             addDoc(ventas, order)
                 .then((res) => {
                     setOrderId(res.id)
