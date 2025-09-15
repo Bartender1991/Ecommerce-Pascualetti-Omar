@@ -4,13 +4,12 @@ import { FaCirclePlus } from "react-icons/fa6"
 import { GiShoppingCart } from "react-icons/gi"
 import { toast } from "react-toastify";
 
-const ItemCount = ({ getQty, stock, onAdd, isCart = false, qty, compra, isDetail }) => {
+const ItemCount = ({ getQty, stock, onAdd, isCart = false, qty, compra }) => {
 
 
     const [count, setCount] = useState(0)
 
     console.log(
-        'detalle', isDetail,
         'getQty', getQty,
         'stock', stock,
         'onAdd', onAdd,

@@ -4,6 +4,7 @@ import VolverAtras from './VolverAtras'
 import CartItemCount from './CartItemCount'
 import ItemCount from './ItemCount'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const CartView = () => {
     const { cart, removeItem, clear, addItem, total } = useContext(CartContext)
@@ -11,7 +12,22 @@ const CartView = () => {
 
     const [purchase, setPurchase] = useState(false)
 
-    
+    const preConfirm = () => {
+        Swal.fire({
+            title: '¿Estas seguro de borrar todo el carrito?',
+            showDenyButton: true,
+            denyButtonText: 'No',
+            confirmButtonText: 'Si'
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    clear()
+                } else if (result.isDenied) {
+                    //poner algo si deniega
+                }
+            })
+    }
+
 
 
     const onAdd = (item, cant) => {
@@ -96,9 +112,7 @@ const CartView = () => {
                     </span>
                 </h4>
                 <div>
-                    <button className="btn btn-outline-danger me-2" onClick={clear}>
-                        Vaciar carrito
-                    </button>
+                    <button className="btn btn-outline-danger me-2" onClick={preConfirm}>Vaciar carrito</button>
                     <Link to='/checkout' className="btn btn-success">Terminar compra</Link>
                 </div>
             </div >

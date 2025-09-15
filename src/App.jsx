@@ -9,7 +9,8 @@ import { CartProvider } from './context/CartContext';
 import CartContainer from './components/CartContainer';
 import 'react-toastify/dist/ReactToastify.css';
 import ToastProvider from './components/ToastProvider';
-import Checkout from './components/Checkout';
+// import Checkout from './components/Checkout';
+import CheckoutHookForm from './components/CheckoutHookForm';
 
 
 
@@ -25,7 +26,7 @@ function App() {
           <Route path='/categories/:category' element={<ItemListContainer mensaje='Bienvenido a nuestra categoria' />} />
           <Route path='/item/:id' element={<ItemDetailContainer />} />
           <Route path='/cart' element={<CartContainer/>}/>
-          <Route path='/checkout' element={<Checkout/>}/>
+          <Route path='/checkout' element={<CheckoutHookForm/>}/>
           <Route path='/*' element={<ErrorComponent />} />
         </Routes>
       </CartProvider>

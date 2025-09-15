@@ -14,10 +14,9 @@ const ItemDetail = ({ detalle }) => {
   // actividad proyecto final
   // const [quantity, setQuantity] = useState(0)
   const [purchase, setPurchase] = useState(false)
-  const [isDetail, setIsDetail] = useState(true)
 
   // raer la funcionalidadpara agregar un tem del carrito del contexto
-  const { addItem } = useContext(CartContext)
+  const { addItem, getQty } = useContext(CartContext)
 
   // responsable de logica de agregar un item al carrito 
   const onAdd = (cantidad) => {
@@ -26,6 +25,7 @@ const ItemDetail = ({ detalle }) => {
     addItem(detalle, cantidad)
   }
 
+  const stockActualizado = detalle.stock - getQty(detalle.id)
 
   return (
     <Card className="shadow-lg border-0 rounded-3 mt-4 p-3">
@@ -59,7 +59,7 @@ const ItemDetail = ({ detalle }) => {
                 <strong>Precio:</strong> ${detalle.price}
               </ListGroup.Item>
               <ListGroup.Item>
-                <strong>Stock disponible:</strong> {detalle.stock}
+                <strong>Stock disponible:</strong> {stockActualizado}
               </ListGroup.Item>
             </ListGroup>
 
@@ -77,7 +77,7 @@ const ItemDetail = ({ detalle }) => {
 
               ) : (
                 <div className="text-center text-md-start mt-3">
-                  <ItemCount isDetail={isDetail} stock={detalle.stock} onAdd={onAdd} />
+                  <ItemCount stock={detalle.stock} onAdd={onAdd} />
                 </div>
               )
             }
