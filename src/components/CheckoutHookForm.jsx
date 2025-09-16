@@ -19,7 +19,7 @@ const CheckoutHookForm = () => {
         let order = {
             comprador: {
                 name:data.name,
-                lastname:data.lasstname,
+                lastname:data.lastname,
                 address:data.address,
                 email:data.email,
             },
