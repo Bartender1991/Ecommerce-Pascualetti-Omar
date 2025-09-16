@@ -24,7 +24,7 @@ Este proyecto fue realizado para aprender las bases de React con JavaScript en C
 
 ## 💻 Demo Online
 
-Si deseas ver el proyecto online, puedes ingresar al siguiente link: [Coder Flex App](#)  
+Si deseas ver el proyecto online, puedes ingresar al siguiente link: [Coder Flex App](#) 
 *(Agrega el enlace real si tienes una demo publicada)*
 
 ## 📁 Estructura de Carpetas
