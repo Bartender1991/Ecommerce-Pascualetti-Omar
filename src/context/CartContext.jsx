@@ -1,13 +1,18 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 // Cramos nuestro contexto
 export const CartContext = createContext()
 
+const productLS = JSON.parse(localStorage.getItem('carrito')) || []
 
 export const CartProvider = ({ children }) => {
 
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState(productLS)
+
+    useEffect(() => {
+        localStorage.setItem('carrito', JSON.stringify(cart))
+    }, [cart])
 
     const addItem = (item, qty) => {
         console.log(cart)
@@ -65,8 +70,8 @@ export const CartProvider = ({ children }) => {
     }
 
     const getQty = (id) => {
-            const producto = cart.find(prod => prod.id === id)
-            return producto ? producto.quantity : 0
+        const producto = cart.find(prod => prod.id === id)
+        return producto ? producto.quantity : 0
     }
 
     const cartQuantity = () => {
