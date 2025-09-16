@@ -4,7 +4,7 @@ import { FaCirclePlus } from "react-icons/fa6"
 import { GiShoppingCart } from "react-icons/gi"
 import { toast } from "react-toastify";
 
-const ItemCount = ({ getQty, stock, onAdd, isCart = false, qty, compra }) => {
+const ItemCount = ({ getQty, stock, onAdd, isCart = false, qty, compra, stockActualizado }) => {
 
 
     const [count, setCount] = useState(0)
@@ -20,7 +20,7 @@ const ItemCount = ({ getQty, stock, onAdd, isCart = false, qty, compra }) => {
 
     const sumar = () => {
         if (!isCart) {
-            if (count < stock) {
+            if (count < stockActualizado) {
                 setCount(count + 1)
             }else{
                 toast.warning("Has superado el máximo permitiro en stock")
@@ -53,20 +53,14 @@ const ItemCount = ({ getQty, stock, onAdd, isCart = false, qty, compra }) => {
     // validacion dinamica para ver si hay o no stock
     useEffect(() => {
         if (isCart) {
-            // console.log('valor de qty', qty)
             setCount(0)
-            // console.log('count', count, 'qty', qty)
-            // console.log('esto es stock', stock)
-
         } else {
-            if (stock === 0) {
+            if (stockActualizado === 0) {
                 setCount(0);
             } else {
                 setCount(1);
             }
         }
-        // console.log('esto es stock', stock)
-
     }, [stock]);
 
     const agregarAlCarrito = () => {
@@ -97,7 +91,7 @@ const ItemCount = ({ getQty, stock, onAdd, isCart = false, qty, compra }) => {
             <div className="d-flex justify-content-center mt-3">
                 <button
                     className="btn btn-primary btn-lg shadow d-flex align-items-center"
-                    disabled={stock === 0 || count === 0}
+                    disabled={stockActualizado === 0 || count === 0}
                     onClick={agregarAlCarrito}
                 >
                     <GiShoppingCart className="me-2" />

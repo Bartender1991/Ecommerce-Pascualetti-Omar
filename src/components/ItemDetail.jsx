@@ -77,7 +77,7 @@ const ItemDetail = ({ detalle }) => {
 
               ) : (
                 <div className="text-center text-md-start mt-3">
-                  <ItemCount stock={detalle.stock} onAdd={onAdd} />
+                  <ItemCount stock={detalle.stock} onAdd={onAdd} stockActualizado={stockActualizado} />
                 </div>
               )
             }
