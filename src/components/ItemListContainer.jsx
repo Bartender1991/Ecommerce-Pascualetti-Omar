@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react"
-import { getProducts } from "../mock/AsyncMock"
 import ItemList from "./ItemList"
 import { useParams } from "react-router-dom"
 import LoaderComponent from "./LoaderComponent"
-import { collection, getDocs, query, where } from "firebase/firestore"
-import { db } from "../service/firebase"
-import SubirMasivo from "./SubirMasivo"
+import { getByCategory } from "../service/firebase"
 
 const ItemListContainer = (props) => {
-    const [data, SetData] = useState([])
+    const [data, setData] = useState([])
     const [loader, setLoader] = useState(false)
     const { category } = useParams()
     const { mensaje } = props
@@ -17,22 +14,15 @@ const ItemListContainer = (props) => {
     // Firebase
     useEffect(() => {
         setLoader(true)
-        // conectar con nuestra coleccion 
-        const productsCollection = category
-            ? query(collection(db, 'productos'), where("category", "==", category))
-            : collection(db, 'productos')
-        //Pedir los datos AKA documentos
-        getDocs(productsCollection)
+        getByCategory(category)
             .then((res) => {
-                // console.log(res.docs)
                 const lista = res.docs.map((doc) => {
                     return {
                         id: doc.id,
                         ...doc.data()
                     }
                 })
-                // console.log(lista)
-                SetData(lista)
+                setData(lista)
             })
             .catch((error) => console.log(error))
             .finally(() => setLoader(false))

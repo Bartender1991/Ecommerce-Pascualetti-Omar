@@ -1,7 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, updateDoc } from "firebase/firestore";
-import { doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, getFirestore, query, updateDoc, where, doc, getDoc } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -42,9 +41,6 @@ export const getOrderById = (id) => {
 
 // Trae los datos de un producto por id
 export const getOneById = (collection, id) => {
-  console.log(collection, 'collection')
-  console.log(id, 'id')
-
   const docRef = doc(db, collection, id)
   return getDoc(docRef)
     .then((docSnap) => {
@@ -84,14 +80,22 @@ export const discountStock = (id, quantity) => {
     })
 }
 
+// Traer datos por categoria
+export const getByCategory = (category) => {
+  const docRef = category
+    ? query(collection(db, 'productos'), where('category', '==', category))
+    : collection(db, 'productos')
+
+  return getDocs(docRef)
+}
 
 
-
-
-
-
-
-
+// Actualiza un producto completo por Id
+export const updateprodById = (id, data) => {
+  console.log("ID recibido en updateProduct:", id, typeof id)
+  const docRef = doc(db, 'productos', id)
+  return updateDoc(docRef, data)
+}
 
 
 

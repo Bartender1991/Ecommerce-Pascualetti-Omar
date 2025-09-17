@@ -1,5 +1,3 @@
-import { Badge } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import { CartContext } from "../context/CartContext";
@@ -13,7 +11,6 @@ function Item({ prod }) {
     const stockActualizado = prod.stock - getQty(prod.id)
 
     const getStatusBadge = (stock) => {
-        console.log(stock)
         if (stock === 0) {
             return (
                 <div

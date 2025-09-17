@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ToastProvider from './components/ToastProvider';
 // import Checkout from './components/Checkout';
 import CheckoutHookForm from './components/CheckoutHookForm';
+import EditItemContainer from './components/EditItemContainer'
 
 
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/item/:id' element={<ItemDetailContainer />} />
           <Route path='/cart' element={<CartContainer/>}/>
           <Route path='/checkout' element={<CheckoutHookForm/>}/>
+          <Route path='/edit' element={<EditItemContainer/>}/>
           <Route path='/*' element={<ErrorComponent />} />
         </Routes>
       </CartProvider>
