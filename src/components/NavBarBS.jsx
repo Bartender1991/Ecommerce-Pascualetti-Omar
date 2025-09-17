@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import React from "react";
 import { Navbar, Container, Nav, Dropdown, NavItem, NavDropdown } from "react-bootstrap";
 import CartWidgetIcon from "./CartWidgetIcon";
+import { FaCog } from "react-icons/fa";
 
 function NavBarBS() {
   return (
@@ -101,8 +102,13 @@ function NavBarBS() {
           </Nav>
 
           <Nav>
+
             <Nav.Link as={NavLink} to="/cart">
               <CartWidgetIcon />
+            </Nav.Link>
+            
+            <Nav.Link as={NavLink} to="/edit">
+              <FaCog size={25} color="white" />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
