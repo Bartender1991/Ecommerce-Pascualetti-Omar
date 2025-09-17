@@ -63,6 +63,7 @@ const Edit = ({ prod }) => {
                             <Form.Control
                                 type="number"
                                 name="price"
+                                step="0.01"
                                 defaultValue={prod.price}
                             />
                         </Form.Group>
