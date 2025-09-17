@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getProductById, updateProductStock } from '../service/firebase'
+import { getOrderById, discountStock } from '../service/firebase'
 import { Link } from 'react-router-dom'
 
 const CheckoutEnd = ({ orderId }) => {
@@ -7,7 +7,7 @@ const CheckoutEnd = ({ orderId }) => {
 
     useEffect(() => {
         if (orderId) {
-            getProductById(orderId)
+            getOrderById(orderId)
                 .then((data) => {
                     console.log('Datos de Firebase:', data)
                     setCartEnd(data)
@@ -21,7 +21,7 @@ const CheckoutEnd = ({ orderId }) => {
     useEffect(() => {
         if (cartEnd?.compras) {
             cartEnd.compras.forEach((item) => {
-                updateProductStock(item.id, item.quantity)
+                discountStock(item.id, item.quantity)
             });
         }
     }, [cartEnd])

@@ -24,8 +24,8 @@ export const db = getFirestore(app)
 
 
 
-// Obtiene un producto por ID desde la colección 'productos'
-export const getProductById = (id) => {
+// Trae una orden creada por el id
+export const getOrderById = (id) => {
   const docRef = doc(db, "orders", id);
   return getDoc(docRef)
     .then((docSnap) => {
@@ -40,21 +40,40 @@ export const getProductById = (id) => {
     });
 };
 
-// Modifica el stock en la base de datos
-export const updateProductStock = (id, quantity) => {
-  const productRef = doc(db, "productos", id)
+// Trae los datos de un producto por id
+export const getOneById = (collection, id) => {
+  console.log(collection, 'collection')
+  console.log(id, 'id')
 
+  const docRef = doc(db, collection, id)
+  return getDoc(docRef)
+    .then((docSnap) => {
+      console.log(docSnap, 'docSnap')
+      if (docSnap.exists()) {
+        return { invalid: false, id: docSnap.id, ...docSnap.data() }
+      } else {
+        return { invalid: true }
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+
+// Modifica el stock despues de comprar
+export const discountStock = (id, quantity) => {
+  const productRef = doc(db, "productos", id)
   return getDoc(productRef)
     .then((productSnap) => {
       if (productSnap.exists()) {
         const currentStock = productSnap.data().stock
-
         return updateDoc(productRef, {
           stock: currentStock - quantity
         })
-        .then(() => {
-          console.log(`✅ Stock actualizado: ${currentStock} → ${currentStock - quantity}`)
-        })
+          .then(() => {
+            console.log(`✅ Stock actualizado: ${currentStock} → ${currentStock - quantity}`)
+          })
       } else {
         console.error("❌ El producto no existe")
         return null
@@ -64,3 +83,27 @@ export const updateProductStock = (id, quantity) => {
       console.error("⚠️ Error al actualizar el stock:", error)
     })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// DELETE → Eliminar un documento
+// export const deleteDocument = (collectionName, id) => {
+//   const docRef = doc(db, collectionName, id)
+//   return deleteDoc(docRef)
+//     .then(() => {
+//       console.log(`🗑️ Documento ${id} eliminado con éxito`)
+//     })
+//     .catch((error) => {
+//       console.error("❌ Error al eliminar documento:", error)
+//     })
+// }
