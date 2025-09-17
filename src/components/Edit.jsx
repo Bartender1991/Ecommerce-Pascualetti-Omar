@@ -3,6 +3,7 @@ import { CartContext } from "../context/CartContext"
 import { Card, Form, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { updateprodById } from "../service/firebase"
+import { toast } from "react-toastify"
 
 const Edit = ({ prod }) => {
     const { getQty } = useContext(CartContext)
@@ -18,15 +19,16 @@ const Edit = ({ prod }) => {
             description: formData.get("description"),
             price: Number(formData.get("price")),
             stock: Number(formData.get("stock")),
+            img: formData.get("img"),
         }
 
         console.log("Datos a actualizar:", updatedData)
         updateprodById(prod.id, updatedData)
             .then(() => {
-                console.log("✅ Producto actualizado correctamente")
+                toast.success("✅ Producto actualizado correctamente")
             })
             .catch((error) => {
-                console.error("❌ Error al actualizar producto:", error)
+                toast.error("❌ Error al actualizar producto:", error)
             })
     }
 
@@ -42,43 +44,33 @@ const Edit = ({ prod }) => {
 
                 <div className="flex-grow-1">
                     <Form onSubmit={finalizarUpdate}>
+                        <Form.Group className="mb-2">
+                            <Form.Label>Imagen (URL)</Form.Label>
+                            <Form.Control type="url" name="img" defaultValue={prod.img} placeholder="https://example.com/imagen.png" />
+                        </Form.Group>
 
                         <Form.Group className="mb-2">
                             <Form.Label>Nombre</Form.Label>
-                            <Form.Control type="text" name="name" defaultValue={prod.name} />
+                            <Form.Control type="text" name="name" defaultValue={prod.name} placeholder="Ingrese nombre del articulo" />
                         </Form.Group>
 
                         <Form.Group className="mb-2">
                             <Form.Label>Descripción</Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                rows={3}
-                                name="description"
-                                defaultValue={prod.description}
-                            />
+                            <Form.Control as="textarea" rows={3} name="description" defaultValue={prod.description} placeholder="Ingrese descripcion del producto" />
                         </Form.Group>
 
                         <Form.Group className="mb-2">
                             <Form.Label>Precio</Form.Label>
-                            <Form.Control
-                                type="number"
-                                name="price"
-                                step="0.01"
-                                defaultValue={prod.price}
-                            />
+                            <Form.Control type="number" name="price" step="0.01" defaultValue={prod.price} placeholder="Ingrese precio del producto" />
                         </Form.Group>
 
                         <Form.Group className="mb-2">
                             <Form.Label>Stock</Form.Label>
-                            <Form.Control
-                                type="number"
-                                name="stock"
-                                defaultValue={stockActualizado}
-                            />
+                            <Form.Control type="number" name="stock" defaultValue={stockActualizado} placeholder="Ingrese cantidad de stock disponible" />
                         </Form.Group>
 
-                        <div className="d-flex flex-column ms-3">
-                            <Link className="btn btn-secondary border-end" to={`/item/${prod.id}`}>
+                        <div className="d-flex ms-3">
+                            <Link className="btn btn-dark border-end" to={`/item/${prod.id}`}>
                                 Ver más
                             </Link>
                             <Button type="submit" variant="primary">

@@ -93,7 +93,7 @@ export const getByCategory = (category) => {
 // Actualiza un producto completo por Id
 export const updateprodById = (id, data) => {
   console.log("ID recibido en updateProduct:", id, typeof id)
-  const docRef = doc(db, 'productos', id)
+  const docRef = doc(db, 'productoss', id)
   return updateDoc(docRef, data)
 }
 
