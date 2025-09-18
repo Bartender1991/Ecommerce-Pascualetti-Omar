@@ -76,12 +76,6 @@ src/
 - [React Icons](https://react-icons.github.io/react-icons/): Iconos para la app.
 - [React Toastify](https://fkhadra.github.io/react-toastify/): Notificaciones.
 
-## 📝 Notas
-
-- Para usar Firebase, configura tus credenciales en `src/service/firebase.js`.
-- Las notificaciones se gestionan con el componente `ToastProvider` incluido en la app.
-- Si tienes una funcionalidad de subida masiva o administración, agrégala aquí con instrucciones de uso.
-
 
 ## 👤 Autor
 - [Omar Pascualetti](https://github.com/Bartender1991)
