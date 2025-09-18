@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { collection, getDocs, getFirestore, query, updateDoc, where, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, getFirestore, query, updateDoc, where, doc, getDoc, addDoc, deleteDoc } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -92,22 +92,21 @@ export const getByCategory = (category) => {
 
 // Actualiza un producto completo por Id
 export const updateprodById = (id, data) => {
-  console.log("ID recibido en updateProduct:", id, typeof id)
-  const docRef = doc(db, 'productoss', id)
+  const docRef = doc(db, 'productos', id)
   return updateDoc(docRef, data)
+}
+
+// Agregar un prducto nuevo
+export const newProduct = (data) => {
+  const docRef = collection(db, 'productos')
+  return addDoc(docRef, data)
 }
 
 
 
 
-// DELETE → Eliminar un documento
-// export const deleteDocument = (collectionName, id) => {
-//   const docRef = doc(db, collectionName, id)
-//   return deleteDoc(docRef)
-//     .then(() => {
-//       console.log(`🗑️ Documento ${id} eliminado con éxito`)
-//     })
-//     .catch((error) => {
-//       console.error("❌ Error al eliminar documento:", error)
-//     })
-// }
+// Eliminar un documento
+export const deleteDocument = (id) => {
+  const docRef = doc(db, 'productos', id)
+  return deleteDoc(docRef)
+}

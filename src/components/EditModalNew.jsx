@@ -1,10 +1,9 @@
 import { useState } from "react"
 import { Modal, Button, Form } from "react-bootstrap"
-import { addDoc, collection } from "firebase/firestore"
-import { db } from "../service/config" // tu config firebase
 import { toast } from "react-toastify"
+import { newProduct } from "../service/firebase"
 
-const EditModalNew = ({ show, handleClose }) => {
+const EditModalNew = ({ show, handleClose, setRefresh }) => {
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = (e) => {
@@ -12,7 +11,8 @@ const EditModalNew = ({ show, handleClose }) => {
     setLoading(true)
 
     const formData = new FormData(e.target)
-    const newProduct = {
+
+    const newData = {
       name: formData.get("name"),
       description: formData.get("description"),
       price: Number(formData.get("price")),
@@ -20,12 +20,13 @@ const EditModalNew = ({ show, handleClose }) => {
       img: formData.get("img"),
     }
 
-    addDoc(collection(db, "productos"), newProduct)
+    newProduct(newData)
       .then(() => {
-        toast.success("✅ Producto agregado correctamente")
+        toast.success("Producto agregado correctamente")
         handleClose()
+        setRefresh(prev => !prev)
       })
-      .catch((error) => toast.error("❌ Error al agregar producto: " + error))
+      .catch((error) => toast.error("Error al agregar producto: " + error))
       .finally(() => setLoading(false))
   }
 

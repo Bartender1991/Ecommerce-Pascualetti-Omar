@@ -2,10 +2,11 @@ import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
 import { Card, Form, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import { updateprodById } from "../service/firebase"
+import { deleteDocument, updateprodById } from "../service/firebase"
 import { toast } from "react-toastify"
+import Swal from "sweetalert2"
 
-const Edit = ({ prod }) => {
+const Edit = ({ prod, setRefresh }) => {
     const { getQty } = useContext(CartContext)
     const stockActualizado = prod.stock - getQty(prod.id)
 
@@ -22,13 +23,39 @@ const Edit = ({ prod }) => {
             img: formData.get("img"),
         }
 
-        console.log("Datos a actualizar:", updatedData)
         updateprodById(prod.id, updatedData)
             .then(() => {
-                toast.success("✅ Producto actualizado correctamente")
+                toast.success("Producto actualizado correctamente")
+                setRefresh(prev => !prev)
             })
             .catch((error) => {
-                toast.error("❌ Error al actualizar producto:", error)
+                console.log(updatedData)
+
+                toast.error("Error al actualizar producto:", error)
+            })
+    }
+
+    const preConfirm = () => {
+        Swal.fire({
+            title: '¿Estas seguro de borrar este item?',
+            showDenyButton: true,
+            denyButtonText: 'No',
+            confirmButtonText: 'Si'
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    deleteDocument(prod.id)
+                        .then(() => {
+                            toast.success("Producto actualizado correctamente")
+                            setRefresh(prev => !prev)
+                        })
+                        .catch((error) => {
+                            toast.error("Error al borrar producto:", error)
+                            console.log(error)
+                        })
+                } else if (result.isDenied) {
+                    toast.error("se decidio no borrar el item")
+                }
             })
     }
 
@@ -75,6 +102,9 @@ const Edit = ({ prod }) => {
                             </Link>
                             <Button type="submit" variant="primary">
                                 Guardar
+                            </Button>
+                            <Button variant="danger" onClick={preConfirm}>
+                                Eliminar
                             </Button>
                         </div>
                     </Form>
